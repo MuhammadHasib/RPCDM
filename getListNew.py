@@ -35,8 +35,11 @@ def getLabelE(text):
   RI=int(bbb[0].replace("_CH","").replace("_R",""))
   CH=int(ccc[0].replace("CH",""))
   DQMname="RE"
-  if DI>0 : DQMname+="+"+str(DI)+"_R"+str(RI)+"_CH"+str(CH)
-  else    : DQMname+=    str(DI)+"_R"+str(RI)+"_CH"+str(CH)
+  CH2 = str(CH)
+  if CH<10 : CH2="0"+str(CH)
+
+  if DI>0 : DQMname+="+"+str(DI)+"_R"+str(RI)+"_CH"+str(CH2)
+  else    : DQMname+=    str(DI)+"_R"+str(RI)+"_CH"+str(CH2)
 
   return {"name":text,"DQMname":DQMname, "Disk":DI, "Ring":RI, "Chamber":CH }
 
