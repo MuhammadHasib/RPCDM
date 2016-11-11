@@ -128,6 +128,7 @@ if [ ! -f $OUTDIR/runSummary.json ]; then
   $CURL "$URLWBM/cmsdb/servlet/RPCBackground?isHist=0&SubMenu=3&Run=${RUN}" -o $OUTDIR/deadStripTable.json
   $CURL "$URLWBM/cmsdb/servlet/RPCBackground?isHist=0&SubMenu=4&Run=${RUN}" -o $OUTDIR/disabledTable.json
 
+
 fi
 
 ## Download DQM
@@ -140,7 +141,7 @@ DQMSUBDIR2="$DQM2/`printf "%07dxx" $(($RUN/100))`"
 $CURL $DQMSUBDIR1 -o $OUTDIR/DQMFileList.html
 DQMFILE=""
 
-for F in `cat $OUTDIR/DQMFileList.html | grep -o "DQM_V[0-9]\+_R0*${RUN}__[^><']*.root"`; do
+for F in `cat $OUTDIR/DQMFileList.html | grep -o "DQM_V[0-9]\+_R0*${RUN}__[^><']*.root" | grep "23Sep2016"`; do
   ## Loop over $DQMFILES but break to be safe for multiple matching
   DQMFILE=$F
   DQMSUBDIR=$DQMSUBDIR1
